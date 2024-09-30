@@ -20,6 +20,7 @@ RUN apt-get update && \
     status=$(gpg --quick-gen-key --batch --passphrase '' none@none.com) && \
     key_name=$(echo $status | sed -nr "s/^.*revocs\.d\/(.*)\.rev'$/\1/p") && \
     gpg --armor --output ./output.key --export $key_name && \
+    cat ./output.key | gpg --import && \
 #Clone the apt repo
     aptly \
        -architectures="amd64" \
