@@ -42,8 +42,8 @@ RUN apt-get update && \
        publish snapshot \
        kubernetes-snapshot && \
 #Setup nginx
-    chmod -R 444 $APTLY_DIR && \
-    echo '\
+    chmod -R 444 $APTLY_DIR
+RUN echo "\
 events{} \
 daemon off; \
 user root; \
@@ -59,6 +59,6 @@ http { \
     } \
   } \
 } \
-' > /etc/nginx/nginx.conf
+" > /etc/nginx/nginx.conf
 
 ENTRYPOINT ["nginx"]
